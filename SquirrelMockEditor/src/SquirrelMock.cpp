@@ -16,6 +16,9 @@ int main()
 
 	VariableNode<std::string>* varStr = new VariableNode<std::string>;
 	varStr->variable = "Fatih and Melisa";
+
+	
+	varStr->setVariable("sffd");
 	actor->variable.push_back(varStr);
 	std::cout << static_cast<VariableNode<std::string>*>(actor->variable.at(1))->variable;
 
