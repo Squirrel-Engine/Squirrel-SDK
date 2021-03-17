@@ -3,12 +3,12 @@
 #include "../../SquirrelSDK/include/VariableNode.h"
 
 
-class VariableNodeTest : public ::testing::Test
+class UT_VariableNode : public ::testing::Test
 {
 protected:
 	
 
-	VariableNodeTest()
+	UT_VariableNode()
 	{
 		//VariableNode<int>* var = new VariableNode<int>;
 		//strVariableNode = new VariableNode<std::string>;
@@ -26,7 +26,7 @@ protected:
 /// <summary>
 /// 
 /// </summary>
-TEST_F(VariableNodeTest, setVariable)
+TEST_F(UT_VariableNode, setVariable)
 {
 	intVariableNode->setVariable(5);
 	ASSERT_EQ(intVariableNode->variable, 5);
@@ -39,7 +39,7 @@ TEST_F(VariableNodeTest, setVariable)
 /// <summary>
 /// 
 /// </summary>
-TEST_F(VariableNodeTest, getVariable)
+TEST_F(UT_VariableNode, getVariable)
 {
 
 	intVariableNode->setVariable(5);
