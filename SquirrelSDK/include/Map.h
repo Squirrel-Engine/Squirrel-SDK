@@ -11,13 +11,13 @@ public:
 	/// <summary> 
 	/// Export final result .srmap file
 	/// </summary>
-	void configureMap();
+	void exportMap();
+	void importMap();
 				  
 	
 	std::string mapName;
 	std::string mapCompatibleVersion;
 
 	std::vector<ActorNode*> actorNodeList;
-	
 };
 

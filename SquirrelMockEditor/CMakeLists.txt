@@ -26,3 +26,4 @@ FILE(GLOB_RECURSE SOURCES "${SRC_DIR}/*.cpp" "${INC_DIR}/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "${INC_DIR}/*.h" "${INC_DIR}/*.hpp")
 
 add_executable(SquirrelMockEditor ${SOURCES} ${INCLUDES})
+target_link_libraries (SquirrelMockEditor SquirrelSDK)

@@ -1,0 +1,9 @@
+#pragma once
+enum class EDBTable
+{
+	MESH_TABLE,
+	TEXTURE_TABLE,
+	SHADER_TABLE,
+	AUDIO_TABLE,
+	MATERIAL_TABLE
+};

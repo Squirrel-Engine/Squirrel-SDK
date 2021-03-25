@@ -12,5 +12,5 @@ enable_testing()
 add_subdirectory(test)
 add_subdirectory (SquirrelSDK)
 add_subdirectory(googletest)
-
+add_subdirectory(SQLiteCpp)
 add_subdirectory(SquirrelMockEditor)
