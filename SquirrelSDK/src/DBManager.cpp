@@ -1,12 +1,11 @@
 #include "DBManager.h"
-
 #include <iostream>
 
 
 
 DBManager::DBManager()
 {
-	db = new SQLite::Database("assetDB.db3", SQLite::OPEN_READWRITE);
+	db = new SQLite::Database(dbPath, SQLite::OPEN_READWRITE);
 }
 
 std::string DBManager::getPath(EDBTable tableName, int index)
@@ -17,16 +16,19 @@ std::string DBManager::getPath(EDBTable tableName, int index)
 	    switch (tableName)
 	    {
         case EDBTable::MESH_TABLE:
-            getPathFromTableName("MeshID", "mesh_id", index);
+            path = getPathFromTableName("Mesh", "mesh_id", index);
             return path;
             break;
         case EDBTable::TEXTURE_TABLE:
+            path = getPathFromTableName("Texture", "texture_id", index);
             return path;
             break;
         case EDBTable::SHADER_TABLE:
+            path = getPathFromTableName("Shader", "shader_id", index);
             return path;
             break;
         case EDBTable::AUDIO_TABLE:
+            path = getPathFromTableName("Audio", "audio_id", index);
             return path;
             break;
 	    	
@@ -45,18 +47,34 @@ std::string DBManager::getPath(EDBTable tableName, int index)
 
 std::string DBManager::getPathFromTableName(std::string tableName, std::string columnName, int index)
 {
-    SQLite::Statement query(*db, "SELECT * FROM " + tableName + " WHERE " +columnName +" = " + std::to_string(index));
-    const char* path;
-    // Loop to execute the query step by step, to get rows of result
-    while (query.executeStep())
-    {
-        // Demonstrate how to get some typed column value
 
-        path = query.getColumn(1);
+	try
+	{
+        const char* path;	
+		SQLite::Statement query(*db, "SELECT * FROM " + tableName + " WHERE " + columnName + " = " + std::to_string(index));
 
-        std::cout << "row: " << ", " << path << ", " << std::endl;
-    }
-    return path;
+		// Loop to execute the query step by step, to get rows of result
+		while (query.executeStep())
+		{
+			// Demonstrate how to get some typed column value
+
+			path = query.getColumn(1);
+
+			std::cout << "row: " << ", " << path << ", " << std::endl;
+            return path;
+		}
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "exception: " << e.what() << std::endl;
+	}
+	
+
+
 }
 
+void DBManager::setPath(std::string path){
+    dbPath = path;
+    db = new SQLite::Database(dbPath, SQLite::OPEN_READWRITE);
+}
 

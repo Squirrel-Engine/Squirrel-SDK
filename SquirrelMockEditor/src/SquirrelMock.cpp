@@ -14,9 +14,8 @@ using namespace std;
 int main()
 {
     DBManager* dbManager = new DBManager();
-
-    dbManager->getPath(EDBTable::MESH_TABLE, 3);
-
+    dbManager->setPath("../assetDB.db3");
+    std::cout << dbManager->getPath(EDBTable::AUDIO_TABLE, 1) << std::endl;
 	/*
     try
     {
